@@ -10,7 +10,7 @@ function App() {
   return (
     <>
     <CssBaseline />
-    <Box sx={{backgroundColor: "black", height: "100vh"}}>
+    <Box>
       <Navbar />
     </Box>
     </>

@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+// Material UI Imports
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
+// Asset Imports
+import logo from '../../assets/whichProf.svg'
 
+// Search bar customization
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
+  borderBottom: '0.001px dotted grey',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
@@ -56,26 +59,39 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+// Navbar
 function Navbar(props) {
+  const [uni, setUni] = useState('NSU');
+
+  const handleChange = (e) => {
+    setUni(e.target.value);
+  }
+
   return (
-   <Box sx={{ flexGrow: 1, backgroundColor: "black", borderBottom: "0.5px solid gray" }}>
-      <AppBar position="static" sx={{ backgroundColor: "black", boxShadow: "none" }}>
+   <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" color="tertiary">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <Box
+            component="img"
+            src={logo}
+            alt="WhichProf Logo"
+            sx={{
+            width: 150, 
+            height: "auto",
+            display: "block",
+            mx: "auto", 
+            }}
+            />
+
+        <Box sx={{ flexGrow: 1 }} />
 
       <FormControl sx={{ m: 1, minWidth: 80 }}>
         <InputLabel id="demo-simple-select-autowidth-label">University</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
+          value={uni}
+          onChange={handleChange}
           autoWidth
           label="Age"
         >
@@ -85,14 +101,12 @@ function Navbar(props) {
         </Select>
       </FormControl>
 
-      <Box sx={{ flexGrow: 1 }} />
-
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search prof..."
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
