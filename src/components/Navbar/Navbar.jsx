@@ -14,6 +14,9 @@ import MenuItem from '@mui/material/MenuItem';
 
 // Asset Imports
 import logo from '../../assets/whichProf.svg'
+import { Link } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProfessors, setProfessorsByUni } from '../../redux/reducer';
 
 // Search bar customization
 const Search = styled('div')(({ theme }) => ({
@@ -61,27 +64,44 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 // Navbar
 function Navbar(props) {
+  const dispatch = useDispatch()
+  const seearchProfessors = useSelector((state) => state.professors.seearchProfessors)
+
   const [uni, setUni] = useState('NSU');
 
-  const handleChange = (e) => {
-    setUni(e.target.value);
+  // const handleChange = (e) => {
+  //   setUni(e.target.value);
+  // }
+
+  const handleSearch = (e) => {
+    dispatch(setProfessors(e.target.value))
+    console.log(e.target.value)
   }
+
+  const handleChange = (e) => {
+    const selectedUni = e.target.value;
+    setUni(selectedUni);
+    dispatch(setProfessorsByUni(e.target.value))
+};
+
 
   return (
    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="tertiary">
         <Toolbar>
-          <Box
-            component="img"
-            src={logo}
-            alt="WhichProf Logo"
-            sx={{
-            width: 150, 
-            height: "auto",
-            display: "block",
-            mx: "auto", 
-            }}
-            />
+          <Link to="/">
+            <Box
+              component="img"
+              src={logo}
+              alt="WhichProf Logo"
+              sx={{
+              width: 150, 
+              height: "auto",
+              display: "block",
+              mx: "auto", 
+              }}
+              />
+          </Link>
 
         <Box sx={{ flexGrow: 1 }} />
 
@@ -108,6 +128,7 @@ function Navbar(props) {
             <StyledInputBase
               placeholder="Search prof..."
               inputProps={{ 'aria-label': 'search' }}
+              onChange={handleSearch}
             />
           </Search>
         </Toolbar>
