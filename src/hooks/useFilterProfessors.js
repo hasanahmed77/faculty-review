@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo } from 'react'
 
 export default function useFilteredProfessors({ professors, searchProfessor, searchByUniversity }) {
   const filtered = useMemo(() => {
@@ -6,7 +6,7 @@ export default function useFilteredProfessors({ professors, searchProfessor, sea
       prof.name.toLowerCase().includes(searchProfessor.toLowerCase()) &&
       (prof.university === searchByUniversity || searchByUniversity === "")
     );
-  }, [professors, searchProfessor, searchByUniversity]);
+  }, [professors, searchProfessor, searchByUniversity])
 
-  return filtered;
+  return filtered
 }

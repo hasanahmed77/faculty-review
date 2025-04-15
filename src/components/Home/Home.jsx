@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Box } from '@mui/material'
+import React from 'react'
 import { useSelector } from 'react-redux';
 import useFetchProfessors from '../../hooks/useFetchProfessors';
 import useFilteredProfessors from '../../hooks/useFilterProfessors';

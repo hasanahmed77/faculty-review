@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import { CardHeader, Box } from '@mui/material';
+import MainProfessorDetails from '../MainProfessorDetails/MainProfessorDetails';
 
 function ProfCard({ name, initial, department, rating, takeAgain, difficulty}) {
   return (
@@ -15,12 +16,8 @@ function ProfCard({ name, initial, department, rating, takeAgain, difficulty}) {
 
         <Box sx={{ flex: 2 }}>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {name} | {initial}
-            </Typography>
-            <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
-              {department}
-            </Typography>
+            <MainProfessorDetails name={name} initial={initial} department={department} />
+
             <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
               Take again: {takeAgain}% | Difficulty: {difficulty}
             </Typography>
