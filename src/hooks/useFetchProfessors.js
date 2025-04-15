@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchProfessors } from '../redux/reducer';
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { fetchProfessors } from '../redux/reducer'
 
 const useFetchProfessors = (searchByUniversity) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (searchByUniversity) {
-      dispatch(fetchProfessors(searchByUniversity));
+      dispatch(fetchProfessors(searchByUniversity))
     }
-  }, [dispatch, searchByUniversity]); // Dependency array ensures it runs when searchByUniversity changes
-};
+  }, [dispatch, searchByUniversity])
+}
 
-export default useFetchProfessors;
+export default useFetchProfessors

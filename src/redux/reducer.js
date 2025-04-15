@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Initial state with empty professors array.
 const initialState = {
   professors: [],
   searchProfessor: '',
@@ -9,7 +8,7 @@ const initialState = {
   error: null,
 };
 
-// Create an async thunk to fetch professors' data from an API
+// thunk
 export const fetchProfessors = createAsyncThunk(
   'professors/fetchProfessors',
   async (university, { rejectWithValue }) => {
