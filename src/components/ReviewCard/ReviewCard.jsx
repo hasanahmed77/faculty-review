@@ -7,7 +7,7 @@ import { CardHeader, Box } from '@mui/material';
 import MainProfessorDetails from '../MainProfessorDetails/MainProfessorDetails';
 import ReviewContent from '../ReviewContent/ReviewContent';
 
-function ProfCard({ reviewType = false , name, initial, department, rating, takeAgain, difficulty}) {
+function ReviewCard({ courseName, review, rating, takeAgain, difficulty }) {
   return (
     <Card sx={{ width: {xs: 350, sm: "400", md: 600}, display: "flex", flexDirection: "row", marginBottom: "2rem", bgcolor:"#FAFAFA", overflow: "hidden" }}>
       <CardActionArea sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
@@ -17,9 +17,7 @@ function ProfCard({ reviewType = false , name, initial, department, rating, take
 
         <Box sx={{ flex: 2 }}>
           <CardContent>
-            { !reviewType && <MainProfessorDetails name={name} initial={initial} department={department} />}
-            
-            { reviewType  && <ReviewContent /> }
+            <ReviewContent courseName={courseName} review={review} /> 
             <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
               Take again: {takeAgain}% | Difficulty: {difficulty}
             </Typography>
@@ -30,4 +28,4 @@ function ProfCard({ reviewType = false , name, initial, department, rating, take
   );
 }
 
-export default ProfCard;
+export default ReviewCard;
