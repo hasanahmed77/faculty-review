@@ -5,23 +5,30 @@ import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import { CardHeader, Box } from '@mui/material';
 import MainProfessorDetails from '../MainProfessorDetails/MainProfessorDetails';
-import ReviewContent from '../ReviewContent/ReviewContent';
+import calculateTakeAgainPercentage from '../../helper functions/calculateTakeAgainPercentage';
+import findDifficulty from '../../helper functions/findDifficulty';
+import calculateRating from '../../helper functions/calculateRating';
+import profCardStyles from './profCardStyles';
 
-function ProfCard({ reviewType = false , name, initial, department, rating, takeAgain, difficulty}) {
+function ProfCard({ name, initial, dept, rating, reviews }) {
+  const takeAgainPercentage = calculateTakeAgainPercentage(reviews);
+  const calculatedDIfficulty = findDifficulty(reviews);
+  const calculatedRating = calculateRating(reviews);
+
   return (
-    <Card sx={{ width: {xs: 350, sm: "400", md: 600}, display: "flex", flexDirection: "row", marginBottom: "2rem", bgcolor:"#FAFAFA", overflow: "hidden" }}>
-      <CardActionArea sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
-        <Box sx={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", p: 2 }}>
-          <CardHeader title={rating} sx={{bgcolor: "white", padding: "3rem"}} />
+    <Card sx={profCardStyles.card}>
+      <CardActionArea sx={profCardStyles.cardActionArea}>
+        <Box sx={profCardStyles.leftBox}>
+          <CardHeader title={calculatedRating} sx={profCardStyles.cardHeader} />
         </Box>
 
-        <Box sx={{ flex: 2 }}>
+        <Box sx={profCardStyles.rightBox}>
           <CardContent>
-            { !reviewType && <MainProfessorDetails name={name} initial={initial} department={department} />}
-            
-            { reviewType  && <ReviewContent /> }
-            <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
-              Take again: {takeAgain}% | Difficulty: {difficulty}
+            <MainProfessorDetails name={name} initial={initial} department={dept} />
+
+            <Typography gutterBottom variant="body2" sx={profCardStyles.typography}>
+              <Box component="span" sx={profCardStyles.boldText}>Take Again:</Box> {takeAgainPercentage}% | 
+              <Box component="span" sx={profCardStyles.boldText}> Difficulty:</Box> {calculatedDIfficulty}
             </Typography>
           </CardContent>
         </Box>

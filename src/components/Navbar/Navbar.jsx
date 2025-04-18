@@ -87,7 +87,7 @@ function Navbar(props) {
 
   return (
    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="tertiary">
+      <AppBar component="nav" position="fixed"  sx={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}>
         <Toolbar>
           <Link to="/">
             <Box

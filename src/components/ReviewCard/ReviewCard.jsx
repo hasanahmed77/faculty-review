@@ -4,7 +4,6 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import { CardHeader, Box } from '@mui/material';
-import MainProfessorDetails from '../MainProfessorDetails/MainProfessorDetails';
 import ReviewContent from '../ReviewContent/ReviewContent';
 
 function ReviewCard({ courseName, review, rating, takeAgain, difficulty }) {
@@ -19,7 +18,8 @@ function ReviewCard({ courseName, review, rating, takeAgain, difficulty }) {
           <CardContent>
             <ReviewContent courseName={courseName} review={review} /> 
             <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
-              Take again: {takeAgain ? 'Yes' : 'No'} | Difficulty: {difficulty}
+              <Box component="span" fontWeight="bold">Take again?</Box>: {takeAgain ? 'Yes' : 'No'} | 
+              <Box component="span" fontWeight="bold"> Difficulty:</Box> {difficulty}
             </Typography>
           </CardContent>
         </Box>
