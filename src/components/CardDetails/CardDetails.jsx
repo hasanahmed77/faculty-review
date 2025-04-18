@@ -8,9 +8,6 @@ import ReviewCard from '../ReviewCard/ReviewCard'
 
 function CardDetails() {
   const { id } = useParams()
-  const name = "Dr X"
-  const initial = "MH"
-  const department = "MAT"
 
   const { data, loading, error } = useSingleFetch(`${import.meta.env.VITE_API_URL}/${id}`)
 
@@ -19,8 +16,13 @@ function CardDetails() {
   if (error) 
       return <Typography color="error">Server down - could not fetch data.</Typography>
   
-  if (loading) 
-    return <CircularProgress />
+  if (loading) {
+    return (
+      <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginTop: "2rem", marginBottom: "2rem"}}>
+        <CircularProgress />
+      </Box>
+    )
+  }
 
   return (
     <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginTop: "2rem", marginBottom: "2rem"}}>
@@ -54,11 +56,11 @@ function CardDetails() {
           data.reviews.map((review, index) => (
             <ReviewCard
               key={index}
-              courseName={data.courseName}
-              review={review}
-              rating={data.rating}
-              takeAgain={data.takeAgain}
-              difficulty={data.difficulty}
+              courseName={review.courseName}
+              review={review.review}
+              rating={review.rating}
+              takeAgain={review.takeAgain}
+              difficulty={review.difficulty}
             />
           ))
         ) : (

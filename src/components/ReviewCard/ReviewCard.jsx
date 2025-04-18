@@ -19,7 +19,7 @@ function ReviewCard({ courseName, review, rating, takeAgain, difficulty }) {
           <CardContent>
             <ReviewContent courseName={courseName} review={review} /> 
             <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
-              Take again: {takeAgain}% | Difficulty: {difficulty}
+              Take again: {takeAgain ? 'Yes' : 'No'} | Difficulty: {difficulty}
             </Typography>
           </CardContent>
         </Box>
