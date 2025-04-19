@@ -19,7 +19,7 @@ function Home() {
   const filteredProfessors = useFilteredProfessors({ professors, searchProfessor, searchByUniversity })
 
   return (
-    <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginTop: "7rem", marginBottom: "2rem"}}>
+    <Box sx={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", marginTop: "8rem", marginBottom: "2rem"}}>
           { <DynamicContent 
               error={error}
               loading={loading}

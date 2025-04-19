@@ -1,19 +1,22 @@
 import { Box, Button, CircularProgress, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import MainProfessorDetails from '../MainProfessorDetails/MainProfessorDetails'
 import { useNavigate, useParams } from 'react-router'
 import useSingleFetch from '../../hooks/useSingleFetch'
 import ReviewCard from '../ReviewCard/ReviewCard'
 import useErrorRedirect from '../../hooks/useErrorRedirect'
 import { cardDetailsStyles } from './cardDetailsStyle'
+import Form from '../Form/Form'
 
 function CardDetails() {
   const { id } = useParams()
-  const navigate = useNavigate();
 
   const { data, loading, error } = useSingleFetch(`${import.meta.env.VITE_API_URL}/${id}`)
+  const [formIsOpen, setFormIsOpen] = useState(false)
 
   useErrorRedirect(error)
+
+  const handleClick = () => setFormIsOpen(true)
 
   if (error) {
     return (
@@ -37,7 +40,7 @@ function CardDetails() {
     <Box sx={cardDetailsStyles.container}>
       <MainProfessorDetails name={data.name} initial={data.initial} department={data.dept}/>
         
-      <Button variant="outlined" sx={cardDetailsStyles.button}>
+      <Button variant="outlined" sx={cardDetailsStyles.button} onClick={handleClick}>
         GIVE A REVIEW
       </Button>
 
@@ -59,6 +62,8 @@ function CardDetails() {
       ) : (
         <Typography>No reviews about this professor yet.</Typography>
       )}
+
+      <Form formIsOpen={formIsOpen} setFormIsOpen={setFormIsOpen} id={id}/>
     </Box>
   )
 }

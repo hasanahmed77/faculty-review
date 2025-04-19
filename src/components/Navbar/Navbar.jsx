@@ -49,9 +49,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   width: '100%',
   '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    padding: theme.spacing(1, 1, 1, 0),  // Make sure there's enough padding
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,  // Adjust padding for search icon
     transition: theme.transitions.create('width'),
     [theme.breakpoints.up('sm')]: {
       width: '12ch',
@@ -64,30 +63,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 // Navbar
 function Navbar(props) {
-  const dispatch = useDispatch()
-  const seearchProfessors = useSelector((state) => state.professors.seearchProfessors)
-
+  const dispatch = useDispatch();
   const [uni, setUni] = useState('NSU');
 
-  // const handleChange = (e) => {
-  //   setUni(e.target.value);
-  // }
-
   const handleSearch = (e) => {
-    dispatch(setProfessors(e.target.value))
-    console.log(e.target.value)
-  }
+    dispatch(setProfessors(e.target.value));
+  };
 
   const handleChange = (e) => {
     const selectedUni = e.target.value;
     setUni(selectedUni);
-    dispatch(setProfessorsByUni(e.target.value))
-};
-
+    dispatch(setProfessorsByUni(e.target.value));
+  };
 
   return (
-   <Box sx={{ flexGrow: 1 }}>
-      <AppBar component="nav" position="fixed"  sx={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar component="nav" position="fixed" color="transparent" sx={{ backgroundColor: 'rgba(255, 255, 255, 0.95)', boxShadow: 3 }}>
         <Toolbar>
           <Link to="/">
             <Box
@@ -95,35 +86,35 @@ function Navbar(props) {
               src={logo}
               alt="WhichProf Logo"
               sx={{
-              width: 150, 
-              height: "auto",
-              display: "block",
-              mx: "auto", 
+                width: 150,
+                height: 'auto',
+                display: 'block',
+                mx: 'auto',
               }}
-              />
+            />
           </Link>
 
-        <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1 }} />
 
-      <FormControl sx={{ m: 1, minWidth: 80 }}>
-        <InputLabel id="demo-simple-select-autowidth-label">University</InputLabel>
-        <Select
-          labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth"
-          value={uni}
-          onChange={handleChange}
-          autoWidth
-          label="Age"
-        >
-          <MenuItem value="NSU">NSU</MenuItem>
-          <MenuItem value="DU">DU</MenuItem>
-          <MenuItem value="BRAC">BRAC</MenuItem>
-        </Select>
-      </FormControl>
+          <FormControl sx={{ m: 1, minWidth: 80 }}>
+            <InputLabel id="demo-simple-select-autowidth-label">University</InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={uni}
+              onChange={handleChange}
+              autoWidth
+              label="University"
+            >
+              <MenuItem value="NSU">NSU</MenuItem>
+              <MenuItem value="DU">DU</MenuItem>
+              <MenuItem value="BRAC">BRAC</MenuItem>
+            </Select>
+          </FormControl>
 
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon sx={{ color: 'gray' }} />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search prof..."

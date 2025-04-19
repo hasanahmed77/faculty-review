@@ -10,25 +10,28 @@ import findDifficulty from '../../helper functions/findDifficulty';
 import calculateRating from '../../helper functions/calculateRating';
 import profCardStyles from './profCardStyles';
 
-function ProfCard({ name, initial, dept, rating, reviews }) {
+function ProfCard({ name, initial, dept, reviews }) {
   const takeAgainPercentage = calculateTakeAgainPercentage(reviews);
   const calculatedDIfficulty = findDifficulty(reviews);
   const calculatedRating = calculateRating(reviews);
 
+  // Use the calculatedRating to determine the style
+  const cardStyles = profCardStyles(calculatedRating);
+
   return (
-    <Card sx={profCardStyles.card}>
-      <CardActionArea sx={profCardStyles.cardActionArea}>
-        <Box sx={profCardStyles.leftBox}>
-          <CardHeader title={calculatedRating} sx={profCardStyles.cardHeader} />
+    <Card sx={cardStyles.card}>
+      <CardActionArea sx={cardStyles.cardActionArea}>
+        <Box sx={cardStyles.leftBox}>
+          <CardHeader title={calculatedRating} sx={cardStyles.cardHeader} />
         </Box>
 
-        <Box sx={profCardStyles.rightBox}>
+        <Box sx={cardStyles.rightBox}>
           <CardContent>
             <MainProfessorDetails name={name} initial={initial} department={dept} />
 
-            <Typography gutterBottom variant="body2" sx={profCardStyles.typography}>
-              <Box component="span" sx={profCardStyles.boldText}>Take Again:</Box> {takeAgainPercentage}% | 
-              <Box component="span" sx={profCardStyles.boldText}> Difficulty:</Box> {calculatedDIfficulty}
+            <Typography gutterBottom variant="body2" sx={cardStyles.typography}>
+              <Box component="span" sx={cardStyles.boldText}>Take Again:</Box> {takeAgainPercentage}% | 
+              <Box component="span" sx={cardStyles.boldText}> Difficulty:</Box> {calculatedDIfficulty}
             </Typography>
           </CardContent>
         </Box>

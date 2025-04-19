@@ -1,4 +1,4 @@
-const profCardStyles = {
+const profCardStyles = (rating) => ({
   card: {
     width: { xs: 350, sm: 400, md: 600 },
     display: "flex",
@@ -20,7 +20,7 @@ const profCardStyles = {
     p: 2,
   },
   cardHeader: {
-    bgcolor: "white",
+    bgcolor: rating >= 4 ? '#d6fffe' : rating >= 3 ? '#FFFFBF' : rating <= 2 ? 'red' : '#E78587',
     padding: "3rem",
   },
   rightBox: {
@@ -32,6 +32,6 @@ const profCardStyles = {
   boldText: {
     fontWeight: "bold",
   },
-};
+})
 
 export default profCardStyles;

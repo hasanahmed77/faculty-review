@@ -4,7 +4,7 @@ export const cardDetailsStyles = {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    marginTop: "2rem",
+    marginTop: "7rem",
     marginBottom: "2rem",
   },
   button: {
