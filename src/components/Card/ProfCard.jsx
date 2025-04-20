@@ -11,6 +11,7 @@ import calculateRating from '../../helper functions/calculateRating';
 import profCardStyles from './profCardStyles';
 
 function ProfCard({ name, initial, dept, reviews }) {
+  
   const takeAgainPercentage = calculateTakeAgainPercentage(reviews);
   const calculatedDIfficulty = findDifficulty(reviews);
   const calculatedRating = calculateRating(reviews);
@@ -30,7 +31,7 @@ function ProfCard({ name, initial, dept, reviews }) {
             <MainProfessorDetails name={name} initial={initial} department={dept} />
 
             <Typography gutterBottom variant="body2" sx={cardStyles.typography}>
-              <Box component="span" sx={cardStyles.boldText}>Take Again:</Box> {takeAgainPercentage}% | 
+              <Box component="span" sx={cardStyles.boldText}>Take Again:</Box> {takeAgainPercentage}{takeAgainPercentage === "N/A" ? '' : '%'} | 
               <Box component="span" sx={cardStyles.boldText}> Difficulty:</Box> {calculatedDIfficulty}
             </Typography>
           </CardContent>

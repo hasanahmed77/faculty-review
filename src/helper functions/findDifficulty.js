@@ -1,4 +1,8 @@
 function findDifficulty(reviews){
+    if(reviews.length === 0){
+        return "N/A"
+    }
+
     const difficulties = ["easy", "medium", "hard"]
 
     const difficultyCounts = reviews.reduce((acc, review) => {

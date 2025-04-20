@@ -1,15 +1,21 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { fetchProfessors } from '../redux/reducer'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProfessors } from '../redux/reducer';
 
-const useFetchProfessors = (searchByUniversity) => {
-  const dispatch = useDispatch()
+const useFetchProfessors = () => {
+  const dispatch = useDispatch();
+
+  const { currentPage, searchByUniversity } = useSelector((state) => state.professors);
 
   useEffect(() => {
     if (searchByUniversity) {
-      dispatch(fetchProfessors(searchByUniversity))
+      dispatch(fetchProfessors({
+        page: currentPage,
+        size: 10, 
+        university: searchByUniversity
+      }));
     }
-  }, [dispatch, searchByUniversity])
-}
+  }, [dispatch, currentPage, searchByUniversity]);
+};
 
-export default useFetchProfessors
+export default useFetchProfessors;

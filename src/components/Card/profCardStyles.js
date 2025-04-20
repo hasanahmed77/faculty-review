@@ -20,7 +20,7 @@ const profCardStyles = (rating) => ({
     p: 2,
   },
   cardHeader: {
-    bgcolor: rating >= 4 ? '#d6fffe' : rating >= 3 ? '#FFFFBF' : rating <= 2 ? 'red' : '#E78587',
+    bgcolor: rating === "N/A" ? 'white' : rating >= 4 ? '#3f51b5' : rating >= 3 ? '#FFFFBF' : rating <= 2 ? 'red' : '#E78587',
     padding: "3rem",
   },
   rightBox: {
