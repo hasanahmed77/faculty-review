@@ -2,8 +2,11 @@ import { Box, Button, FormControl, FormControlLabel, Modal, Radio, RadioGroup, T
 import React, { useState } from 'react';
 
 import styles from './formStyle';
+import { useNavigate } from 'react-router';
 
 const Form = ({ formIsOpen, setFormIsOpen, id }) => {
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     courseName: '',
     rating: 1,
@@ -58,7 +61,9 @@ const Form = ({ formIsOpen, setFormIsOpen, id }) => {
       console.log('Form submitted successfully:', data);
       setDisableSubmitBtn(false)
       handleClose();
-      window.location.reload(); 
+      
+      navigate(0)
+
     } catch (error) {
       setDisableSubmitBtn(false)
       console.error('Error submitting form:', error);
