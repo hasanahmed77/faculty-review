@@ -62,6 +62,7 @@ const Form = ({ formIsOpen, setFormIsOpen, id }) => {
       setDisableSubmitBtn(false)
       handleClose();
       
+      navigate(`/${id}`)
       navigate(0)
 
     } catch (error) {
