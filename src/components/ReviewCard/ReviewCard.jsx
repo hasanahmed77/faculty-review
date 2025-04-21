@@ -10,7 +10,7 @@ function ReviewCard({ courseName, review, rating, takeAgain, difficulty }) {
   return (
     <Card sx={{ width: {xs: 350, sm: "400", md: 600}, display: "flex", flexDirection: "row", marginBottom: "2rem", bgcolor:"#FAFAFA", overflow: "hidden" }}>
         <Box sx={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", p: 2 }}>
-          <CardHeader title={rating} sx={{bgcolor: rating >= 4 ? '#d6fffe' : rating >= 3 ? '#FFFFBF' : rating <= 2 ? 'red' : '#E78587', padding: "3rem"}} />
+          <CardHeader title={rating} sx={{bgcolor: rating >= 4 ? '#42a5f5' : rating >= 3 ? '#FFFFBF' : rating <= 2 ? 'red' : '#E78587', padding: "3rem"}} />
         </Box>
 
         <Box sx={{ flex: 2 }}>
